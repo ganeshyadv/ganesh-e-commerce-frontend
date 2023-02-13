@@ -51,7 +51,7 @@ class adminController {
             pageData.message = req.session.message;
             delete req.session.status, req.session.message
         };
-        let result = await axios.get("http://localhost:3003/api/v1/product/get-all-product")
+        let result = await axios.get("http://localhost:3003/api/v1/product")
         console.log("result", result);
         pageData.allProdducts = result.data;
         res.render("admin/template", pageData)
@@ -71,7 +71,7 @@ class adminController {
                 pageData.message = req.session.message;
                 delete req.session.status, req.session.message
             };
-            let result = await axios.get("http://localhost:3003/api/v1/category/get-category");
+            let result = await axios.get("http://localhost:3003/api/v1/category");
             console.log("result", result);
             pageData.categorys = result.data
             res.render("admin/template", pageData)
@@ -94,7 +94,7 @@ class adminController {
                 pageData.message = req.session.message;
                 delete req.session.status, req.session.message
             };
-            let result = await axios.get("http://localhost:3003/api/v1/orders/get-orders");
+            let result = await axios.get("http://localhost:3003/api/v1/orders");
             console.log("result", result);
             pageData.orders = result.data
             res.render("admin/template", pageData)
@@ -158,7 +158,7 @@ class adminController {
         try {
             let orderId = req.params.orderId
             console.log("orderId", orderId);
-            let result = await axios.delete(`http://localhost:3003/api/v1/orders/delete-order/${orderId}`);
+            let result = await axios.delete(`http://localhost:3003/api/v1/orders/${orderId}`);
             console.log("result", result);
             console.log("result.data.message", result.data.message);
             req.session.status = "success";
@@ -251,7 +251,7 @@ class adminController {
         try {
             let data = req.params.userId
             console.log("userId", data);
-            let result = await axios.delete(`http://localhost:3003/api/v1/admin/delete-user/${data}`);
+            let result = await axios.delete(`http://localhost:3003/api/v1/admin/${data}`);
             req.session.status = "success";
             req.session.message = result.data.message;
             res.redirect("/admin/adminAllUsers")
@@ -272,7 +272,7 @@ class adminController {
         try {
             let data = req.params.productId
             console.log("userId", data);
-            let result = await axios.delete(`http://localhost:3003/api/v1/product/delete-product/${data}`);
+            let result = await axios.delete(`http://localhost:3003/api/v1/product/${data}`);
             req.session.status = "success";
             req.session.message = result.data.message;
             res.redirect("/admin/admin-all-product")
@@ -293,7 +293,7 @@ class adminController {
         try {
             let data = req.params.catagoryId
             console.log("userId", data);
-            let result = await axios.delete(`http://localhost:3003/api/v1/category/delete-category/${data}`);
+            let result = await axios.delete(`http://localhost:3003/api/v1/category/${data}`);
             req.session.status = "success";
             req.session.message = result.data.message;
             res.redirect("/admin/all-category")
