@@ -1,3 +1,32 @@
+<!-- addCategory Modal start  -->
+<div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form action="/admin/add-category" method="post">
+                        <label for="">Title</label>
+                        <input type="text" class="form-control" id="title" name="title">
+                        <label for="">Description</label>
+                        <textarea name="description" id="" cols="30" rows="4" class="form-control"></textarea>
+                        <label for="">Perent Id</label>
+                        <input type="number" class="form-control" id="perentId" name="perentId">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- addCategory Modal end  -->
+
 <!-- edit Category Modal start  -->
 <div class="modal fade" id="editCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -37,6 +66,11 @@
         </h4>
         <% } %>
     <div class="card-body">
+        <div class="p-2 bd-highlight" align="right">
+            <a href="" class="btn-lg btn-info" data-bs-toggle="modal" data-bs-target="#addCategory">Add
+                Category</a>
+        </div>
+        <br>
         <table id="example2" class="table table-bordered table-hover">
             <thead>
                 <tr>
