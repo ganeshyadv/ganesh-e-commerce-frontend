@@ -1,0 +1,253 @@
+<!-- edit User Modal start  -->
+<div class="modal fade" id="editUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <style>
+                .card-registration .select-input.form-control[readonly]:not([disabled]) {
+                    font-size: 1rem;
+                    line-height: 2.15;
+                    padding-left: .75em;
+                    padding-right: .75em;
+                }
+            
+                .card-registration .select-arrow {
+                    top: 13px;
+                }
+            </style>
+            
+            <section class="h-100 bg-dark">
+                <div class="container py-5 h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col">
+                            <div class="card card-registration my-4">
+                                <div class="row g-0">
+                                    <div class="col-xl-6 d-none d-xl-block">
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                                            alt="Sample photo" class="img-fluid"
+                                            style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <form action="/updateUser" method="post">
+                                            <div class="card-body p-md-5 text-black">
+                                                <h3 class="mb-5 text-uppercase">Registration Form</h3>
+            
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-4">
+                                                        <div class="form-outline">
+                                                            <input type="text" id="form3Example1m" name="firstName"
+                                                                class="form-control form-control-lg" />
+                                                            <label class="form-label" for="form3Example1m">First name</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 mb-4">
+                                                        <div class="form-outline">
+                                                            <input type="text" id="form3Example1n" name="lastName"
+                                                                class="form-control form-control-lg" />
+                                                            <label class="form-label" for="form3Example1n">Last name</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-outline mb-4">
+                                                    <input type="text" id="form3Example8" name="address"
+                                                        class="form-control form-control-lg" />
+                                                    <label class="form-label" for="form3Example8">Address</label>
+                                                </div>
+            
+                                                <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+            
+                                                    <h6 class="mb-0 me-4">Gender: </h6>
+            
+                                                    <div class="form-check form-check-inline mb-0 me-4">
+                                                        <input class="form-check-input" type="radio" id="femaleGender" name="gender"
+                                                            value="female" />
+                                                        <label class="form-check-label" for="femaleGender">Female</label>
+                                                    </div>
+            
+                                                    <div class="form-check form-check-inline mb-0 me-4">
+                                                        <input class="form-check-input" type="radio" id="maleGender" name="gender"
+                                                            value="male" />
+                                                        <label class="form-check-label" for="maleGender">Male</label>
+                                                    </div>
+            
+                                                    <div class="form-check form-check-inline mb-0">
+                                                        <input class="form-check-input" type="radio" id="otherGender" name="gender"
+                                                            value="other" />
+                                                        <label class="form-check-label" for="otherGender">Other</label>
+                                                    </div>
+            
+                                                </div>
+            
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-4">
+            
+                                                        <div class="form-outline mb-4">
+                                                            <input type="text" id="form3Example9" name="state"
+                                                                class="form-control form-control-lg" />
+                                                            <label class="form-label" for="form3Example9">State</label>
+                                                        </div>
+            
+                                                    </div>
+                                                    <div class="col-md-6 mb-4">
+            
+                                                        <div class="form-outline mb-4">
+                                                            <input type="text" id="form3Example9" name="city"
+                                                                class="form-control form-control-lg" />
+                                                            <label class="form-label" for="form3Example9">City</label>
+                                                        </div>
+            
+                                                    </div>
+                                                </div>
+            
+                                                <div class="form-outline mb-4">
+                                                    <input type="date" id="form3Example9" name="dob"
+                                                        class="form-control form-control-lg" />
+                                                    <label class="form-label" for="form3Example9">DOB</label>
+                                                </div>
+            
+                                                <div class="form-outline mb-4">
+                                                    <input type="number" id="form3Example90" name="pincode"
+                                                        class="form-control form-control-lg" />
+                                                    <label class="form-label" for="form3Example90">Pincode</label>
+                                                </div>
+            
+            
+            
+                                                <div class="form-outline mb-4">
+                                                    <input type="email" id="form3Example97" name="email"
+                                                        class="form-control form-control-lg" />
+                                                    <label class="form-label" for="form3Example97">Email ID</label>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-4">
+            
+                                                        <div class="form-outline mb-4">
+                                                            <input type="password" id="form3Example9" name="password"
+                                                                class="form-control form-control-lg" />
+                                                            <label class="form-label" for="form3Example9">Password</label>
+                                                        </div>
+            
+                                                    </div>
+                                                    <div class="col-md-6 mb-4">
+            
+                                                        <div class="form-outline mb-4">
+                                                            <input type="password" id="form3Example9" name="confirmPassword"
+                                                                class="form-control form-control-lg" />
+                                                            <label class="form-label" for="form3Example9">Confirm Password</label>
+                                                        </div>
+            
+                                                    </div>
+                                                </div>
+            
+                                                <div class="d-flex justify-content-end pt-3">
+                                                    <% if(status && message){ %>
+                                                        <small class="text text-danger">
+                                                            <%= message; %>
+                                                        </small>
+                                                        <% } %>
+                                                            <button type="submit" class="btn btn-warning btn-lg ms-2">Submit
+                                                                form</button>
+                                                </div>
+            
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- edit user Modal end  -->
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">List of All Registered Users</h2>
+            </div>
+            <% if(status && message){ %>
+                <h4 class="text text-danger">
+                    <%= message; %>
+                </h4>
+                <% } %>
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>full name</th>
+                                    <th>Address</th>
+                                    <th>Gender</th>
+                                    <th>dob</th>
+                                    <th>pincode</th>
+                                    <th>Email</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(let i=0; i < allUsers.length; i++){const users=allUsers[i] %>
+                                    <tr>
+                                        <td>
+                                            <h5><%- i + 1; %></h5>
+                                        </td>
+                                        <td>
+                                            <h5><%- users.first_name +" "+ users.last_name; %></h5>
+                            </td>
+                            <td>
+                                <h5><%- users.address; %></h5>
+                            </td>
+                            <td>
+                                <h5><%- users.gender; %></h5>
+                            </td>
+                            <td>
+                                <h5>
+                                    <%- users.dob; %>
+                                </h5>
+                            </td>
+                            <td>
+                                <h5><%- users.pincode; %></h5>
+                            </td>
+                            <td>
+                                <h5><%- users.email; %></h5>
+                            </td>
+                            <td>
+                                <a href="" class=" btn btn-info" data-bs-toggle="modal"
+                                data-bs-target="#editUser">Edit</a>
+                                <a href="/admin/delete-user-by-admin/<%- users.id; %>"onclick="return confirm('Are you sure want to delete this user')"class="btn btn-danger">Delete</a>
+                            </td>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>first name</th>
+                                    <th>Email</th>
+                                    <th>Gender</th>
+                                    <th>Hobby</th>
+                                    <th>Address</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+
+                        </table>
+                    </div>
+        </div>
+    </div>
+</div>

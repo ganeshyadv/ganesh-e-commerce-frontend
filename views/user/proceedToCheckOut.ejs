@@ -1,0 +1,183 @@
+<div class="container-fluid py-5">
+    <div class="container-fluid">
+        <div class="row g-0 gx-5 align-items-end">
+            <form action="/placeOrder" method="post">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Customer Details
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label>Full Name</label>
+                                                <input type="text" name="fullName" class="form-control" />
+                                            </div>
+                                            <div class="col-6">
+                                                <label>Email</label>
+                                                <input type="email" name="email" class="form-control" />
+                                            </div>
+                                            <div class="col-6">
+                                                <label>Primary Contact Number</label>
+                                                <input type="number" name="primaryContact" class="form-control" />
+                                            </div>
+                                            <div class="col-6">
+                                                <label>Alternate Contact Number</label>
+                                                <input type="number" name="secondaryContact" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Shipping Address
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label>Address</label>
+                                                <textarea name="shippingAddress" id="shippingAddress"
+                                                    class="form-control"></textarea>
+                                            </div>
+                                            <div class="col-6">
+                                                <label>City</label>
+                                                <input type="text" name="shippingCity" id="shippingCity"
+                                                    class="form-control" />
+                                            </div>
+                                            <div class="col-6">
+                                                <label>Pincode</label>
+                                                <input type="number" name="shippingPincode" id="shippingPincode"
+                                                    class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <div class="card">
+                                    <div class="card-header">Billing Address
+                                        <input type="checkbox" onclick=" autofill()" name="fillSameAddress"
+                                            id="fillSameAddress"><span>same as shipping address</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label>Address</label>
+                                                <textarea name="billingAddress" id="billingAddress"
+                                                    class="form-control"></textarea>
+                                            </div>
+                                            <div class="col-6">
+                                                <label>City</label>
+                                                <input type="text" name="billingCity" id="billingCity"
+                                                    class="form-control" />
+                                            </div>
+                                            <div class="col-6">
+                                                <label>Pincode</label>
+                                                <input type="number" name="billingPincode" id="billingPincode"
+                                                    class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Title</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                                <tr>
+                                                    <td>
+                                                        <h5>1</h5>
+                                                    </td>
+                                                    <td>
+                                                        <h5>t-shert</h5>
+                                                    </td>
+                                                    <td>
+                                                        <h5>500</h5>
+                                                        <input type="hidden" name="productIds" value="" />
+                                                        <input type="hidden" name="productPrice" value="" />
+                                                        <input type="hidden" name="productQuantity" value="" />
+                                                    </td>
+                                                    <td>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        
+                                                    </td>
+                                                </tr>
+                                                
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <div align="right" >
+                                                    <th colspan="4">Grand Total</th>
+                                                </div>
+
+                                                <th colspan="1">
+                                                    <h5>500</h5>
+                                                    <input type="hidden" name="grandTotal" value="" />
+                                                </th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        Payment Method
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="radio" name="paymentMethod" value="googlePay" id="googlePay">
+                                        <label for="">Google Pay</label>
+                                        <input type="radio" name="paymentMethod" value="phonePay" id="phonePay">
+                                        <label for="">Phone Pay</label>
+                                        <input type="radio" name="paymentMethod" value="Paytm" id="Paytm">
+                                        <label for="">Paytm</label>
+                                        <input type="radio" name="paymentMethod" value="COD" id="COD">
+                                        <label for="">Cash On Delivery</label>
+                                    </div>
+                                </div>
+                                <br>
+                                <div align="right">
+                                    <button type="submit" class="btn btn-primary">Place Order</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function autofill() {
+        let shippingAddress = $('#shippingAddress').val();
+        let shippingCity = $('#shippingCity').val();
+        let shippingPincode = $('#shippingPincode').val();
+        $('#billingAddress').val(shippingAddress);
+        $('#billingCity').val(shippingCity);
+        $('#billingPincode').val(shippingPincode);
+    };
+</script>
