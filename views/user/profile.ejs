@@ -3,6 +3,29 @@
         <h3>Profile</h3>
     </div>
     <div class="card-body">
-        <h4>Name :- <strong>ganesh yadav</strong></h4>
+        <h4>Name :- <strong>
+                <%= singleUser.first_name + " " + singleUser.last_name %>
+            </strong></h4>
+        <h4>Address :- <strong>
+                <%= singleUser.address %>
+            </strong></h4>
+        <h4>Gender :- <strong>
+                <%= singleUser.gender %>
+            </strong></h4>
+        <h4>State :- <strong>
+                <%= singleUser.state %>
+            </strong></h4>
+        <h4>City :- <strong>
+                <%= singleUser.city %>
+            </strong></h4>
+        <h4>date Of Birth :- <strong>
+                <%= singleUser.dob %>
+            </strong></h4>
+        <h4>Pincode :- <strong>
+                <%= singleUser.pincode %>
+            </strong></h4>
+        <h4>Email :- <strong>
+                <%= singleUser.email %>
+            </strong></h4>
     </div>
 </div>

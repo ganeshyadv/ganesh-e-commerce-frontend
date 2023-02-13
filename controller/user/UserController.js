@@ -60,14 +60,16 @@ class UserController{
             title: "profile",
             pageName: "profile",
             isUserLogIn: false,
+            singleUser: "",
         }
         if (req.cookies.isUserLogIn) {
             pageData.isUserLogIn = req.cookies.isUserLogIn
         };
          let userId = req.cookies.isUserLogIn
          console.log("userId", userId);
-         let result = await axios.get("http://localhost:3003/api/v1/user/my-profile", userId)
+         let result = await axios.get(`http://localhost:3003/api/v1/user/getUserById/${userId}`)
          console.log("result", result);
+         pageData.singleUser = result.data[0]
         res.render("user/template", pageData)
     };
 
