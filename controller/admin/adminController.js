@@ -135,6 +135,31 @@ class adminController {
         }
     };
 
+    async updateCategory(req, res) {
+        try {
+            console.log("req.body", req.body);
+            let udateCategory = {
+                title: req.body.title,
+                description: req.body.description,
+                perentId: req.body.perentId,
+                categoryId: req.body.categoryId,
+            }
+            let result = await axios.put("http://localhost:3003/api/v1/category", udateCategory);
+            req.session.status = "success";
+            req.session.message = result.data.message;
+            res.redirect("/admin/all-category")
+            return false
+        } catch (error) {
+            if (error.response && error.response.status == 400) {
+                let errorInfo = error.response.data;
+                req.session.status = "ERROR";
+                req.session.message = errorInfo.message;
+                res.redirect('/admin');
+            }
+            console.log("udateCategory page error::", error);
+        }
+    };
+
     async createOrder(req, res) {
         try {
             console.log("req.body", req.body);
@@ -193,7 +218,7 @@ class adminController {
             let createProductData = {
                 title: req.body.title,
                 description: req.body.description,
-                perentId: req.body.perentId,
+                categoryId: req.body.categoryId,
                 price: req.body.price,
                 // file: req.files.image,
             };
@@ -201,7 +226,7 @@ class adminController {
             let formData = new FormData();
             formData.append('title', req.body.title);
             formData.append('description', req.body.description);
-            formData.append('perentId', req.body.perentId);
+            formData.append('categoryId', req.body.categoryId);
             formData.append('price', req.body.price);
             console.log("req.files", req.files);    
             const file = req.files.image;
@@ -316,6 +341,29 @@ class adminController {
             req.session.status = "success";
             req.session.message = result.data.message;
             res.redirect("/admin/all-category")
+            return false
+        } catch (error) {
+            if (error.response && error.response.status == 400) {
+                let errorInfo = error.response.data;
+                req.session.status = "ERROR";
+                req.session.message = errorInfo.message;
+                res.redirect('/admin');
+            }
+            console.log("delete category page error::", error);
+        }
+    };
+
+    async getCategoryById(req, res) {
+        console.log("req.qurey", req.query.catId);
+        try {
+            let catId = req.query.catId
+            console.log("userId", catId);
+            let result = await axios.get(`http://localhost:3003/api/v1/category/get-category-by-id/${catId}` );
+            console.log("result", result);
+            res.json(
+                result.data
+            )
+
             return false
         } catch (error) {
             if (error.response && error.response.status == 400) {

@@ -10,7 +10,11 @@ app.get("/all-category", adminController.allCategory);
 
 app.post("/add-category", adminController.createCategory);
 
+app.post("/update-category", adminController.updateCategory);
+
 app.get("/delete-category-by-admin/:catagoryId", adminController.deleteCategory);
+
+app.get("/get-category-by-id", adminController.getCategoryById);
 
 app.post("/registretion-by-admin", adminController.registretionByAdmin);
 
