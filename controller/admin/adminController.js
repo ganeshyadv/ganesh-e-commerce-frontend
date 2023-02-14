@@ -257,6 +257,52 @@ class adminController {
             console.log("createProduct page error::", error);
         }
     };
+    async updateProduct(req, res) {
+        try {
+            let updateProductData = {
+                title: req.body.title,
+                description: req.body.description,
+                categoryId: req.body.categoryId,
+                price: req.body.price,
+                productId: req.body.productId
+                // file: req.files.image,
+            };
+            console.log("updateProductData", updateProductData);
+            let formData = new FormData();
+            formData.append('title', req.body.title);
+            formData.append('description', req.body.description);
+            formData.append('categoryId', req.body.categoryId);
+            formData.append('price', req.body.price);
+            formData.append('productId', req.body.productId);
+            console.log("req.files", req.files);    
+            const file = req.files.image;
+
+            formData.append('image', file.data, file.name);
+            console.log("image", formData);
+            let result = await axios.put("http://localhost:3003/api/v1/product", formData, {
+                headers: {
+                    // 'Content-Type': 'application/json',
+                    'accept': 'application/json',
+                    'Content-Type': `multipart/form-data`,
+                    // 'Content-Type': 'multipart/form-data'
+                }
+            }
+            );
+            req.session.status = "success";
+            req.session.message = result.data.message;
+            console.log("result", result);
+            res.redirect("/admin/admin-all-product")
+            return false
+        } catch (error) {
+            if (error.response && error.response.status == 400) {
+                let errorInfo = error.response.data;
+                req.session.status = "ERROR";
+                req.session.message = errorInfo.message;
+                // res.redirect('/admin');
+            }
+            console.log("createProduct page error::", error);
+        }
+    };
 
     async registretionByAdmin(req, res) {
         try {

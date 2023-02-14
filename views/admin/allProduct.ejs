@@ -38,12 +38,12 @@
 <div class="modal fade" id="editProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
+            <form action="/admin/update-product" method="post" enctype="multipart/form-data">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/admin/update-product" method="post" enctype="multipart/form-data">
                     <label for="" class="form-label">Title</label>
                     <input type="text" class="form-control" name="title">
                 
@@ -55,16 +55,19 @@
                 
                     <label for="" class="form-label">Price</label>
                     <input type="number" class="form-control" name="price">
+
+                    <input type="hidden" class="form-control" id="productId" name="productId">
                 
                     <label for="formFileSm" class="form-label">Product Image</label>
                     <input class="form-control form-control-sm" multiple accept="." id="image" type="file" name="image">
+
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Save</button>
-                </form>
             </div>
+        </form>
         </div>
     </div>
 </div>
@@ -134,8 +137,7 @@
                         </td>
                         <td>
                             <h5>
-                                <a href="#" class="btn btn-info" data-bs-toggle="modal"
-                                data-bs-target="#editProduct">Edit</a>
+                                <a href="#" class="btn btn-info"  onclick="return editProduct('<%= products.id; %>')">Edit</a>
                                 <a href="/admin/delete-product-by-admin/<%- products.id; %>" onclick="return confirm('Are you sure want to delete this product')"
                                     class="btn btn-danger">Delete</a>
                             </h5>
@@ -159,3 +161,10 @@
 
 </div>
 
+<script>
+    function editProduct(proId) {
+        console.log("proId", proId);
+        $('#productId').val(proId);
+        $('#editProduct').modal("show");
+    }
+</script>

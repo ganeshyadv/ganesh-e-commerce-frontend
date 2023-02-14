@@ -12,6 +12,8 @@ app.post("/add-category", adminController.createCategory);
 
 app.post("/update-category", adminController.updateCategory);
 
+app.post("/update-product", adminController.updateProduct);
+
 app.get("/delete-category-by-admin/:catagoryId", adminController.deleteCategory);
 
 app.get("/get-category-by-id", adminController.getCategoryById);
