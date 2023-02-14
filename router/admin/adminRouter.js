@@ -1,6 +1,6 @@
 const express = require("express");
-const adminController = require("../../controller/admin/adminController");
 const app = express();
+const adminController = require("../../controller/admin/adminController");
 
 app.get("/", adminController.homePage);
 
@@ -15,6 +15,8 @@ app.get("/delete-category-by-admin/:catagoryId", adminController.deleteCategory)
 app.post("/registretion-by-admin", adminController.registretionByAdmin);
 
 app.get("/delete-user-by-admin/:userId", adminController.deleteUserByAdmin);
+
+// app.get("/edit-user-by-admin/:userId", adminController.editUserByAdmin);
 
 app.get("/admin-all-product", adminController.allProduct);
 

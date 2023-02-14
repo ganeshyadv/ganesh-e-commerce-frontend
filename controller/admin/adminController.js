@@ -1,5 +1,5 @@
 const axios = require("axios");
-const fs = require('fs');
+const FormData = require("form-data");
 
 class adminController {
     constructor() { }
@@ -34,6 +34,8 @@ class adminController {
         };
         let result = await axios.get("http://localhost:3003/api/v1/admin")
         console.log("result", result);
+        req.session.status = "success";
+        req.session.message = result.data.message;
         pageData.allUsers = result.data;
         res.render("admin/template", pageData)
     };
@@ -53,6 +55,8 @@ class adminController {
         };
         let result = await axios.get("http://localhost:3003/api/v1/product")
         console.log("result", result);
+        req.session.status = "success";
+        req.session.message = result.data.message;
         pageData.allProdducts = result.data;
         res.render("admin/template", pageData)
     };
@@ -73,6 +77,8 @@ class adminController {
             };
             let result = await axios.get("http://localhost:3003/api/v1/category");
             console.log("result", result);
+            req.session.status = "success";
+            req.session.message = result.data.message;
             pageData.categorys = result.data
             res.render("admin/template", pageData)
         } catch (error) {
@@ -96,6 +102,8 @@ class adminController {
             };
             let result = await axios.get("http://localhost:3003/api/v1/orders");
             console.log("result", result);
+            req.session.status = "success";
+            req.session.message = result.data.message;
             pageData.orders = result.data
             res.render("admin/template", pageData)
         } catch (error) {
@@ -112,6 +120,8 @@ class adminController {
                 perentId: req.body.perentId,
             }
             let result = await axios.post("http://localhost:3003/api/v1/category", addCategoryData);
+            req.session.status = "success";
+            req.session.message = result.data.message;
             res.redirect("/admin/all-category")
             return false
         } catch (error) {
@@ -142,6 +152,8 @@ class adminController {
                 paymentMethod: req.body.paymentMethod,
             }
             let result = await axios.post("http://localhost:3003/api/v1/orders", addOrderData);
+            req.session.status = "success";
+            req.session.message = result.data.message;
             res.redirect("/admin/admin-all-orders")
             return false
         } catch (error) {
@@ -191,19 +203,24 @@ class adminController {
             formData.append('description', req.body.description);
             formData.append('perentId', req.body.perentId);
             formData.append('price', req.body.price);
-            //fs.createReadStream(file.path)
             console.log("req.files", req.files);    
-            formData.append('file', fs.createReadStream(req.files.image.path));
-            console.log("formData", formData);
+            const file = req.files.image;
+
+            formData.append('image', file.data, file.name);
+            console.log("image", formData);
             let result = await axios.post("http://localhost:3003/api/v1/product", formData, {
                 headers: {
-                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/json',
+                    'accept': 'application/json',
+                    'Content-Type': `multipart/form-data`,
                     // 'Content-Type': 'multipart/form-data'
                 }
             }
             );
+            req.session.status = "success";
+            req.session.message = result.data.message;
             console.log("result", result);
-            // res.redirect("/admin/admin-all-product")
+            res.redirect("/admin/admin-all-product")
             return false
         } catch (error) {
             if (error.response && error.response.status == 400) {
@@ -233,6 +250,8 @@ class adminController {
             }
             let result = await axios.post("http://localhost:3003/api/v1/user/", formData);
             console.log("result", result);
+            req.session.status = "success";
+            req.session.message = result.data.message;
             res.redirect("/admin/adminAllUsers");
             return false;
         } catch (error) {

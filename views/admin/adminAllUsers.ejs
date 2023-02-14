@@ -417,7 +417,7 @@
                                 <h5><%- users.email; %></h5>
                             </td>
                             <td>
-                                <a href="" class=" btn btn-info" data-bs-toggle="modal"
+                                <a href="/admin/edit-user-by-admin/<%- users.id; %>" class=" btn btn-info" data-bs-toggle="modal"
                                 data-bs-target="#editUser">Edit</a>
                                 <a href="/admin/delete-user-by-admin/<%- users.id; %>"onclick="return confirm('Are you sure want to delete this user')"class="btn btn-danger">Delete</a>
                             </td>
