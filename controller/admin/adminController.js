@@ -191,6 +191,39 @@ class adminController {
             console.log("createOrder page error::", error);
         }
     };
+
+    async editOrder(req, res) {
+        try {
+            console.log("req.body", req.body);
+            let editOrderData = {
+                fullName: req.body.fullName,
+                email: req.body.email,
+                primaryContact: req.body.primaryContact,
+                alternetContact: req.body.alternetContact,
+                shippingAddress: req.body.shippingAddress,
+                shippingCity: req.body.shippingCity,
+                shippingPincode: req.body.shippingPincode,
+                billingAddress: req.body.billingAddress,
+                billingCity: req.body.billingCity,
+                billingPincode: req.body.billingPincode,
+                paymentMethod: req.body.paymentMethod,
+                orderId: req.body.orderId,
+            }
+            let result = await axios.put("http://localhost:3003/api/v1/orders", editOrderData);
+            req.session.status = "success";
+            req.session.message = result.data.message;
+            res.redirect("/admin/admin-all-orders")
+            return false
+        } catch (error) {
+            if (error.response && error.response.status == 400) {
+                let errorInfo = error.response.data;
+                req.session.status = "ERROR";
+                req.session.message = errorInfo.message;
+                res.redirect('/admin');
+            }
+            console.log("editOrder page error::", error);
+        }
+    };
     async deleteOrder(req, res) {
         try {
             let orderId = req.params.orderId
@@ -320,6 +353,39 @@ class adminController {
                 password: req.body.password,
             }
             let result = await axios.post("http://localhost:3003/api/v1/user/", formData);
+            console.log("result", result);
+            req.session.status = "success";
+            req.session.message = result.data.message;
+            res.redirect("/admin/adminAllUsers");
+            return false;
+        } catch (error) {
+            if (error.response && error.response.status == 400) {
+                let errorInfo = error.response.data;
+                req.session.status = "ERROR";
+                req.session.message = errorInfo.message;
+                res.redirect("/admin/adminAllUsers")
+            }
+            console.log("controller registretion page error :::", error);
+        }
+    };
+
+    async updateUserByAdmin(req, res) {
+        try {
+            console.log("req.body", req.body);
+            let formData = {
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                address: req.body.address,
+                gender: req.body.gender,
+                state: req.body.state,
+                city: req.body.city,
+                dob: req.body.dob,
+                pincode: req.body.pincode,
+                email: req.body.email,
+                password: req.body.password,
+                userId: req.body.userId,
+            }
+            let result = await axios.put("http://localhost:3003/api/v1/admin/update-user", formData);
             console.log("result", result);
             req.session.status = "success";
             req.session.message = result.data.message;

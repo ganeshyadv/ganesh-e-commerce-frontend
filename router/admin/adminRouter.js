@@ -14,6 +14,8 @@ app.post("/update-category", adminController.updateCategory);
 
 app.post("/update-product", adminController.updateProduct);
 
+app.post("/update-user", adminController.updateUserByAdmin);
+
 app.get("/delete-category-by-admin/:catagoryId", adminController.deleteCategory);
 
 app.get("/get-category-by-id", adminController.getCategoryById);
@@ -21,8 +23,6 @@ app.get("/get-category-by-id", adminController.getCategoryById);
 app.post("/registretion-by-admin", adminController.registretionByAdmin);
 
 app.get("/delete-user-by-admin/:userId", adminController.deleteUserByAdmin);
-
-// app.get("/edit-user-by-admin/:userId", adminController.editUserByAdmin);
 
 app.get("/admin-all-product", adminController.allProduct);
 
@@ -33,6 +33,8 @@ app.post("/create-product", adminController.createProduct);
 app.get("/admin-all-orders", adminController.allOrders);
 
 app.post("/create-Order", adminController.createOrder);
+
+app.post("/edit-Order", adminController.editOrder);
 
 app.get("/delete-order/:orderId", adminController.deleteOrder);
 

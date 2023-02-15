@@ -207,7 +207,7 @@
 <!-- addOrder Modal end  -->
 
 <!-- edit order Modal start  -->
-<div class="modal fade" id="editorder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -381,7 +381,7 @@
                                                         <label for="">Paytm</label>
                                                         <input type="radio" name="paymentMethod" value="COD" id="COD">
                                                         <label for="">Cash On Delivery</label>
-                                                        <input type="hidden" value="">
+                                                        <input type="hidden" name="orderId" id="orderId" value="">
                                                     </div>
                                                 </div>
                                                 <br>
@@ -513,8 +513,7 @@
                         </td>
                         <td>
                             <h5>
-                                <a href="#" class="btn btn-info" data-bs-toggle="modal"
-                                data-bs-target="#editorder">Edit</a>
+                                <a href="#" class="btn btn-info" data-bs-target="#editUser" data-bs-toggle="modal" onclick="return editOrder('<%= order.id; %>')">Edit</a>
                                 <a href="/admin/delete-order/<%= order.id; %>" class="btn btn-danger" onclick="return confirm('you want to delete order?')" >Delete</a>
                             </h5>
                         </td>
@@ -542,3 +541,10 @@
     </div>
 
 </div>
+<script>
+    function editOrder(orderId) {
+        console.log("orderId", orderId);
+        $('#orderId').val(orderId);
+        $('#editOrder').modal("show");
+    }
+</script>
