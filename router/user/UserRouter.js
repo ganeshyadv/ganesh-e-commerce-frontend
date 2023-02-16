@@ -10,6 +10,10 @@ app.get("/login", userController.login);
 
 app.get("/profile", userController.profile);
 
+app.post("/update-user", userController.updateUser);
+
+app.post("/update-password", userController.updatePassword);
+
 app.get("/cart", userController.cart);
 
 app.get("/proceed-to-check-out", userController.proceedToCheckOut);

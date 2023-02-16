@@ -32,7 +32,7 @@
                                                 style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
                                         </div>
                                         <div class="col-xl-6">
-                                            <form action="/updateUser" method="post">
+                                            <form action="/update-user" method="post">
                                                 <div class="card-body p-md-5 text-black">
                                                     <h3 class="mb-5 text-uppercase">Registration Form</h3>
 
@@ -40,7 +40,8 @@
                                                         <div class="col-md-6 mb-4">
                                                             <div class="form-outline">
                                                                 <input type="text" id="form3Example1m" name="firstName"
-                                                                    class="form-control form-control-lg" />
+                                                                    class="form-control form-control-lg"
+                                                                    value="<%= singleUser.first_name; %>" />
                                                                 <label class="form-label" for="form3Example1m">First
                                                                     name</label>
                                                             </div>
@@ -48,7 +49,8 @@
                                                         <div class="col-md-6 mb-4">
                                                             <div class="form-outline">
                                                                 <input type="text" id="form3Example1n" name="lastName"
-                                                                    class="form-control form-control-lg" />
+                                                                    class="form-control form-control-lg"
+                                                                    value="<%= singleUser.last_name; %>" />
                                                                 <label class="form-label" for="form3Example1n">Last
                                                                     name</label>
                                                             </div>
@@ -56,7 +58,8 @@
                                                     </div>
                                                     <div class="form-outline mb-4">
                                                         <input type="text" id="form3Example8" name="address"
-                                                            class="form-control form-control-lg" />
+                                                            class="form-control form-control-lg"
+                                                            value="<%= singleUser.address; %>" />
                                                         <label class="form-label" for="form3Example8">Address</label>
                                                     </div>
 
@@ -93,7 +96,8 @@
 
                                                             <div class="form-outline mb-4">
                                                                 <input type="text" id="form3Example9" name="state"
-                                                                    class="form-control form-control-lg" />
+                                                                    class="form-control form-control-lg"
+                                                                    value="<%= singleUser.state; %>" />
                                                                 <label class="form-label"
                                                                     for="form3Example9">State</label>
                                                             </div>
@@ -103,7 +107,8 @@
 
                                                             <div class="form-outline mb-4">
                                                                 <input type="text" id="form3Example9" name="city"
-                                                                    class="form-control form-control-lg" />
+                                                                    class="form-control form-control-lg"
+                                                                    value="<%= singleUser.city; %>" />
                                                                 <label class="form-label"
                                                                     for="form3Example9">City</label>
                                                             </div>
@@ -113,13 +118,15 @@
 
                                                     <div class="form-outline mb-4">
                                                         <input type="date" id="form3Example9" name="dob"
-                                                            class="form-control form-control-lg" />
+                                                            class="form-control form-control-lg"
+                                                            value="<%= singleUser.dob; %>" />
                                                         <label class="form-label" for="form3Example9">DOB</label>
                                                     </div>
 
                                                     <div class="form-outline mb-4">
                                                         <input type="number" id="form3Example90" name="pincode"
-                                                            class="form-control form-control-lg" />
+                                                            class="form-control form-control-lg"
+                                                            value="<%= singleUser.pincode; %>" />
                                                         <label class="form-label" for="form3Example90">Pincode</label>
                                                     </div>
 
@@ -127,42 +134,23 @@
 
                                                     <div class="form-outline mb-4">
                                                         <input type="email" id="form3Example97" name="email"
-                                                            class="form-control form-control-lg" />
+                                                            class="form-control form-control-lg"
+                                                            value="<%= singleUser.email; %>" />
                                                         <label class="form-label" for="form3Example97">Email ID</label>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6 mb-4">
-
-                                                            <div class="form-outline mb-4">
-                                                                <input type="password" id="form3Example9"
-                                                                    name="password"
-                                                                    class="form-control form-control-lg" />
-                                                                <label class="form-label"
-                                                                    for="form3Example9">Password</label>
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="col-md-6 mb-4">
-
-                                                            <div class="form-outline mb-4">
-                                                                <input type="password" id="form3Example9"
-                                                                    name="confirmPassword"
-                                                                    class="form-control form-control-lg" />
-                                                                <label class="form-label" for="form3Example9">Confirm
-                                                                    Password</label>
-                                                            </div>
-
-                                                        </div>
+                                                    <div>
+                                                        <input type="hidden" name="userId" id="userId"
+                                                            value="<%= singleUser.id; %>">
                                                     </div>
 
+
                                                     <div class="d-flex justify-content-end pt-3">
-                                                                <button type="submit"
-                                                                    class="btn btn-warning btn-lg ms-2">Submit
-                                                                    form</button>
+                                                        <button type="submit" class="btn btn-warning btn-lg ms-2">Submit
+                                                            form</button>
                                                     </div>
 
                                                 </div>
-
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -173,22 +161,92 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save</button>
-                </form>
             </div>
         </div>
     </div>
 </div>
 <!-- edit user Modal end  -->
 
+<!-- edit password Modal start  -->
+<div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/update-password" method="post">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+
+                                <div class="form-outline mb-4">
+                                    <input type="password" id="form3Example9" name="currentPassword"
+                                        class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example9">Current Password</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+
+                                <div class="form-outline mb-4">
+                                    <input type="password" id="form3Example9" name="newPassword"
+                                        class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example9">New Password</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+
+                                <div class="form-outline mb-4">
+                                    <input type="password" id="form3Example9" name="confirmNewPassword"
+                                        class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example9">Confirm Password</label>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-secondary">Save</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- edit password Modal end  -->
+
 <div class="card">
     <div class="card-header">
         <h3>Profile</h3>
     </div>
-    <div>
-        <a href="" class=" btn btn-info" onclick="return updateUser('<%= singleUser.id %>')">Edit</a>
+    <div align="right">
+        <button class=" btn btn-lg btn-info" data-target="#editUser" data-toggle="modal"> Edit Peofile</button>
+        <button class=" btn btn-lg btn-info" data-target="#changePassword" data-toggle="modal">change
+            password</button>
+
     </div>
     <div class="card-body">
+        <div>
+            <% if(message){ %>
+                <div>
+                    <h4>
+                        <%= message; %>
+                    </h4>
+                </div>
+                <% } %>
+        </div>
         <h4>Name :- <strong>
                 <%= singleUser.first_name + " " + singleUser.last_name %>
             </strong></h4>
@@ -215,10 +273,3 @@
             </strong></h4>
     </div>
 </div>
-
-<script>
-function updateUser(userId) {
-    
-}
-
-</script>
