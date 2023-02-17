@@ -5,61 +5,66 @@
                 <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s">
                     <h1 class="disply-5 mb-3">Cart Items</h1>
                     <form action="/proceed-to-check-out" method="get">
-                    <div class="table">
-                        <table class="table table-bordered table-light">
-                            <thead>
-                                <tr>
-                                    <th>S.No</th>
-                                    <th>Image</th>
-                                    <th>Title</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                               
+                        <div class="table">
+                            <table class="table table-bordered table-light">
+                                <thead>
                                     <tr>
-                                        <td>
-                                           <h5>1</h5>
-                                        </td>
-                                        <td>
-                                            <img src="images/tshirt-img.png" style="width: 150px; height: 100px;"
-                                                alt="">
-                                        </td>
-                                        <td>
-                                            <h5>t-shert</h5>
-                                        </td>
-                                        <td>RS<span id="">
-                                             500 
-                                            </span>/-</td>
-                                        <td>
-                                            <input type="number" id="" name="quantity" min="1" max="100" value="1"
-                                                class="form-control" onchange="return updateGrandTotal('')"/>
-                                        </td>
-                                        <td> <span class="productTotalAmt" id="">
-                                                500
-                                            </span> </td>
-                                        <td>
-                                            <a href="#" class="btn btn-danger ">Remove Item</a>
-                                        </td>
+                                        <th>S.No</th>
+                                        <th>Image</th>
+                                        <th>Title</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th>Action</th>
                                     </tr>
-                                    <input type="hidden" name="productIds" value="">
-                                    
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="5" align="right">Grand Total</td>
-                                    <td colspan="2"><span id="grandTotal">500</span></td>
-                                </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (let i=0; i < cartProduct.length; i++ ){ const product=cartProduct[i]; %>
+                                        <tr>
+                                            <td>
+                                                <h5>
+                                                    <%= i + 1; %>
+                                                </h5>
+                                            </td>
+                                            <td>
+                                                <img src="<%= product.path; %>" style="width: 150px; height: 100px;"
+                                                    alt="">
+                                            </td>
+                                            <td>
+                                                <h5>
+                                                    <%= product.title; %>
+                                                </h5>
+                                            </td>
+                                            <td>RS<span id="productPrice_<%= product.id; %>">
+                                                    <%= product.price; %>
+                                                </span>/-</td>
+                                            <td>
+                                                <input type="number" id="productQty_<%= product.id; %>" name="quantity"
+                                                    min="1" max="100" value="1" class="form-control"
+                                                    onchange="return updateGrandTotal('<%= product.id; %>')" />
+                                            </td>
+                                            <td> <span class="productTotalAmt" id="productTotal_<%= product.id; %>">
+                                                    <%= product.price; %>
+                                                </span> </td>
+                                            <td>
+                                                <a href="#" class="btn btn-danger">Remove Item</a>
+                                            </td>
+                                        </tr>
+                                        <input type="hidden" name="productIds" value="">
+                                        <% } %>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5" align="right">Grand Total</td>
+                                        <td colspan="2"><span id="grandTotal"></span></td>
+                                    </tr>
 
-                            </tfoot>
-                        </table>
-                        <div align="right">
-                        <button type="submit" class="btn btn-primary">Proceed to check out</button>
+                                </tfoot>
+                            </table>
+                            <div align="right">
+                                <button type="submit" class="btn btn-primary">Proceed to check out</button>
+                            </div>
                         </div>
-                    </div>
                     </form>
                 </div>
             </div>

@@ -4,7 +4,7 @@ class UserController {
     constructor() { }
 
 
-     async home(req, res) {
+    async home(req, res) {
         let pageData = {
             title: "Homepage",
             pageName: "home",
@@ -21,11 +21,11 @@ class UserController {
             pageData.message = req.session.message;
             delete req.session.status, req.session.message
         }
-         let allProducts = await axios.get("http://localhost:3003/api/v1/product")
-         console.log("allProducts", allProducts);
-         pageData.allProducts = allProducts.data;
-         req.session.status = "success";
-         req.session.message = allProducts.data.message;
+        let allProducts = await axios.get("http://localhost:3003/api/v1/product")
+        console.log("allProducts", allProducts);
+        pageData.allProducts = allProducts.data;
+        req.session.status = "success";
+        req.session.message = allProducts.data.message;
         res.render("user/template", pageData)
     };
 
@@ -138,8 +138,8 @@ class UserController {
             console.log("req.body", formData);
             let token = `Bearer ${req.cookies.isUserLogIn}`
             let result = await axios.put("http://localhost:3003/api/v1/user/updatePassword", formData, {
-                headers:{
-                    Authorization:token
+                headers: {
+                    Authorization: token
                 }
             });
             console.log("/n/n/n &&&&& result &&&&&", result);
@@ -171,16 +171,34 @@ class UserController {
         res.json(true);
     };
 
-    cart(req, res) {
-        let pageData = {
-            title: "cart",
-            pageName: "cart",
-            isUserLogIn: false,
-        }
-        if (req.cookies.isUserLogIn) {
-            pageData.isUserLogIn = req.cookies.isUserLogIn
+    async cart(req, res) {
+        try {
+            let pageData = {
+                title: "cart",
+                pageName: "cart",
+                isUserLogIn: false,
+                cartProduct: "",
+            }
+            if (req.cookies.isUserLogIn) {
+                pageData.isUserLogIn = req.cookies.isUserLogIn
+            };
+            if(req.cookies.cartItems){
+                let data = req.cookies.cartItems
+                console.log("data", data);
+                let cartItems = await axios.get(`http://localhost:3003/api/v1/product/cart-items/${data}`);
+                console.log("cartItems", cartItems);
+                pageData.cartProduct = cartItems.data;
+            }
+            res.render("user/template", pageData)
+        } catch (error) {
+            if (error.response && error.response.status == 400) {
+                let errorInfo = error.response.data;
+                req.session.status = "ERROR";
+                req.session.message = errorInfo.message;
+                console.log("controller UpdatePassword page error :::", error);
+                res.redirect("/cart")
+            }
         };
-        res.render("user/template", pageData)
     };
 
     proceedToCheckOut(req, res) {
@@ -192,6 +210,8 @@ class UserController {
         if (req.cookies.isUserLogIn) {
             pageData.isUserLogIn = req.cookies.isUserLogIn
         };
+        let data = req.qurey
+        console.log("data", data);
         res.render("user/template", pageData)
     };
 
