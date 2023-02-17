@@ -4,15 +4,28 @@ class UserController {
     constructor() { }
 
 
-    home(req, res) {
+     async home(req, res) {
         let pageData = {
             title: "Homepage",
             pageName: "home",
             isUserLogIn: false,
+            status: "",
+            message: "",
+            allProducts: "",
         }
         if (req.cookies.isUserLogIn) {
             pageData.isUserLogIn = req.cookies.isUserLogIn
         };
+        if (req.session.status && req.session.message) {
+            pageData.status = req.session.status;
+            pageData.message = req.session.message;
+            delete req.session.status, req.session.message
+        }
+         let allProducts = await axios.get("http://localhost:3003/api/v1/product")
+         console.log("allProducts", allProducts);
+         pageData.allProducts = allProducts.data;
+         req.session.status = "success";
+         req.session.message = allProducts.data.message;
         res.render("user/template", pageData)
     };
 
@@ -143,6 +156,19 @@ class UserController {
                 res.redirect("/profile")
             }
         }
+    };
+
+    addToCart(req, res) {
+        console.log("req.body", req.body);
+        let items = [];
+        if (req.cookies.cartItems) {
+            items = req.cookies.cartItems;
+        }
+        items.push(req.body.productId);
+        items = [...new Set(items)]
+        res.cookie("cartItems", items);
+        console.log("res.cookies", req.cookies);
+        res.json(true);
     };
 
     cart(req, res) {

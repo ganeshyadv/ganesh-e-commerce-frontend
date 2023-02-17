@@ -14,6 +14,8 @@ app.post("/update-user", userController.updateUser);
 
 app.post("/update-password", userController.updatePassword);
 
+app.post("/add-to-cart", userController.addToCart);
+
 app.get("/cart", userController.cart);
 
 app.get("/proceed-to-check-out", userController.proceedToCheckOut);
