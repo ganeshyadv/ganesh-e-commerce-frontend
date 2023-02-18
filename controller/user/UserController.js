@@ -212,17 +212,26 @@ class UserController {
         res.redirect("/proceed-to-check-out")   
     }
 
-    proceedToCheckOut(req, res) {
+    async proceedToCheckOut(req, res) {
         let pageData = {
             title: "proceedToCheckOut",
             pageName: "proceedToCheckOut",
             isUserLogIn: false,
+            products: "",
+            quantity: "",
         }
         if (req.cookies.isUserLogIn) {
             pageData.isUserLogIn = req.cookies.isUserLogIn
         };
-        let data = req.qurey
-        console.log("data", data);
+        let orderItem = req.cookies.orderItem;
+        let orderProductIds = orderItem.productIds;
+        let orderQuantity = orderItem.quantity;
+        console.log("orderProductIds", orderProductIds);
+        console.log("orderQuantity", orderQuantity);
+        let cartProducts = await axios.get(`http://localhost:3003/api/v1/product/cart-items/${orderProductIds}`);
+        console.log("cartProducts", cartProducts);
+        pageData.products = cartProducts.data;
+        pageData.quantity = orderQuantity
         res.render("user/template", pageData)
     };
 

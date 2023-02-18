@@ -106,28 +106,28 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
+                                            <% let grandTotal=0; for(let i=0; i < products.length; i++){ grandTotal=grandTotal + quantity[i] * products[i].price %>
                                             <tr>
                                                 <td>
-                                                    <h5>1</h5>
+                                                    <h5><%= i + 1; %></h5>
                                                 </td>
                                                 <td>
-                                                    <h5>t-shert</h5>
+                                                    <h5><%= products[i].title; %></h5>
                                                 </td>
                                                 <td>
-                                                    <h5>500</h5>
-                                                    <input type="hidden" name="productIds" value="" />
-                                                    <input type="hidden" name="productPrice" value="" />
-                                                    <input type="hidden" name="productQuantity" value="" />
+                                                    <h5><%= products[i].price; %></h5>
+                                                    <input type="hidden" name="productIds" value="<%= products[i].id; %>" />
+                                                    <input type="hidden" name="productPrice" value="<%= products[i].price; %>" />
+                                                    <input type="hidden" name="productQuantity" value="<%= quantity[i]; %>" />
                                                 </td>
                                                 <td>
-
+                                                    <%= quantity[i]; %>
                                                 </td>
                                                 <td>
-
+                                                    <%= quantity[i] * products[i].price ;%>
                                                 </td>
                                             </tr>
-
+                                            <% } %>
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -136,8 +136,8 @@
                                                 </div>
 
                                                 <th colspan="1">
-                                                    <h5>500</h5>
-                                                    <input type="hidden" name="grandTotal" value="" />
+                                                    <h5><%= grandTotal; %></h5>
+                                                    <input type="hidden" name="grandTotal" value="<%= grandTotal; %>    " />
                                                 </th>
                                             </tr>
                                         </tfoot>
