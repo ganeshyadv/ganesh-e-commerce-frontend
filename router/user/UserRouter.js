@@ -18,6 +18,8 @@ app.post("/add-to-cart", userController.addToCart);
 
 app.get("/cart", userController.cart);
 
+app.post("/check-out", userController.checkOut);
+
 app.get("/proceed-to-check-out", userController.proceedToCheckOut);
 
 app.post("/registretion", userController.registretion);

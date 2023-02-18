@@ -261,24 +261,30 @@ class adminController {
             formData.append('description', req.body.description);
             formData.append('categoryId', req.body.categoryId);
             formData.append('price', req.body.price);
-            console.log("req.files", req.files);    
-            const file = req.files.image;
+            console.log("req.files", req.files);
+            if(req.files && req.files.image){
 
-            formData.append('image', file.data, file.name);
-            console.log("image", formData);
-            let result = await axios.post("http://localhost:3003/api/v1/product", formData, {
-                headers: {
-                    // 'Content-Type': 'application/json',
-                    'accept': 'application/json',
-                    'Content-Type': `multipart/form-data`,
-                    // 'Content-Type': 'multipart/form-data'
+                const file = req.files.image;
+                
+                formData.append('image', file.data, file.name);
+                console.log("image", formData);
+                let result = await axios.post("http://localhost:3003/api/v1/product", formData, {
+                    headers: {
+                        // 'Content-Type': 'application/json',
+                        'accept': 'application/json',
+                        'Content-Type': `multipart/form-data`,
+                        // 'Content-Type': 'multipart/form-data'
+                    }
                 }
-            }
-            );
-            req.session.status = "success";
-            req.session.message = result.data.message;
-            console.log("result", result);
-            res.redirect("/admin/admin-all-product")
+                );
+                req.session.status = "success";
+                req.session.message = result.data.message;
+                console.log("result", result);
+            }  else{
+                req.session.status = "ERROR";
+                req.session.message = "image is requaird";
+            }  
+                res.redirect("/admin/admin-all-product")
             return false
         } catch (error) {
             if (error.response && error.response.status == 400) {

@@ -201,6 +201,17 @@ class UserController {
         };
     };
 
+    checkOut(req, res){
+        console.log("req.body", req.body);
+        let orderItem = {
+            productIds: req.body.productIds,
+            quantity: req.body.quantity,
+        }; 
+        res.cookie("orderItem", orderItem)
+        console.log("req.cookies.orderItem", req.cookies.orderItem);
+        res.redirect("/proceed-to-check-out")   
+    }
+
     proceedToCheckOut(req, res) {
         let pageData = {
             title: "proceedToCheckOut",
